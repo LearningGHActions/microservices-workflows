@@ -1,0 +1,27 @@
+name: "Microservice - Continuous Integration"
+
+on:
+  workflow_call:
+    secrets:
+      token:
+        required: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.token }}
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ">=1.21.7"
+          go-version-file: go.mod
+
+      - name: Install dependencies
+        run: make setup
+
+      - name: Test
+        run: make test
