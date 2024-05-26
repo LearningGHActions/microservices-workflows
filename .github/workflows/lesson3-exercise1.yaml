@@ -8,7 +8,7 @@ on:
         type: string
 
 jobs:
-  test:
+  greeting:
     runs-on: ubuntu-latest
     steps:
       - name: Greetings message
